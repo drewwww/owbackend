@@ -1,0 +1,76 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+  </head>
+
+  <title>Admin Control Panel </title>
+  <center>
+  <b>Admin Control Panel</b><br>
+  </center>
+  
+  <form method="post" action="admin/ban" class="pure-form">
+    <legend>Bans</legend>
+
+    <input placeholder="Steam ID" type="text" name="steamid" required>
+    <input placeholder="Reason" type="text" name="reason" required>
+    <label for="state">Ban From</label>
+    <select id="type" name="type">{{range $type, $name := .BanForms}}
+      <option value="{{print $type}}">{{print $name}}</option>{{end}}
+    </select>
+    <label for="state">Ban Until</label>
+    <input placeholder="Date" type="date" name="date">
+    <input placeholder="Time" type="time" name="time">
+    <input type="checkbox" name="remove" value="true">Remove<br>
+    <input type="hidden" name="xsrf-token" value="{{.XSRFToken}}">
+    <button type="submit" class="pure-button pure-button-primary">Ban</button>
+  </form>
+
+  <form method="post" action="admin/roles" class="pure-form">
+    <legend>Change Player Roles</legend>
+
+    <input placeholder="Steam ID" type="text" name="steamid" required>
+    <label for="role">Role</label>
+    <select id="role" name="role">{{range $type, $name := .RoleForms}}
+      <option value="{{print $type}}">{{print $name}}</option>{{end}}
+    </select>
+    <input type="checkbox" name="remove" value="true">Remove<br>
+    <input type="hidden" name="xsrf-token" value="{{.XSRFToken}}">
+    <button type="submit" class="pure-button pure-button-primary">Add</button>
+  </form>
+
+  <form method="get" action="admin/banlogs" class="pure-form">
+    <legend> Ban Logs </legend>
+    <input placeholder="Steam ID (optional)" type="text" name="steamid">
+    <input type="checkbox" name="all" value="true">Fetch all bans<br>
+    <input type="hidden" name="xsrf-token" value="{{.XSRFToken}}">
+    <button type="submit" class="pure-button pure-button-primary">View</button>
+  </form>
+  
+  <a class="pure-button pure-button-primary" href="/admin/server/">Manage Stored Servers</a>
+  <a class="pure-button pure-button-primary" href="/admin/lobbies">View lobbies in progress</a>
+  
+  <form method="get" action="admin/chatlogs" class="pure-form pure-form-aligned">
+    <fieldset class="pure-control-group">
+      <legend>Chat Logs</legend>
+      
+      <label for="steamid">Player's Steam ID</label>
+       <input placeholder="Steam ID" type="text" name="steamid"><br>
+        <label for="lobbyid">Room (Lobby ID, 0 for global room)</label>
+      <input placeholder="Room" type="text" name="room">
+      </fieldset>
+    <fieldset class="pure-control-group">
+      <label for="from">From</label>
+      <input placeholder="From" type="date" name="from"><br>
+      <label for="to">To</label>
+      <input placeholder="To" type="date" name="to"><br>
+      <label for="state">Order</label>
+        <select id="order" name="order">
+            <option>Descending</option>
+            <option>Ascending</option>
+        </select>
+    </fieldset>
+      <button type="submit" class="pure-button pure-button-primary">View</button>
+  </form>
+
+  </script>
+</html>

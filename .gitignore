@@ -1,0 +1,47 @@
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.so
+Helen
+
+# Folders
+_obj
+_test
+
+# Version Management
+vendor/
+glide.lock
+
+# Architecture specific extensions/prefixes
+*.[568vq]
+[568vq].out
+
+*.cgo1.go
+*.cgo2.c
+_cgo_defun.c
+_cgo_gotypes.go
+_cgo_export.*
+
+_testmain.go
+
+*.exe
+*.test
+*.prof
+*.out
+*.coverprofile
+*.log
+*.pid
+
+.DS_Store
+
+.idea
+
+runTestsWithKeys.sh
+
+# Emacs backup files
+\#*
+
+bower_components
+assets/bindata.go
+assets/geoip.mmdb
+assets/geoip.mmdb.gz
